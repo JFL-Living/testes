@@ -1,6 +1,10 @@
 name: Deploy to K8S PRD Cluster
 
-on: push
+on: 
+  push:
+    branches: main
+
+  workflow_dispatch:
 
 env:
   APP_NAME: send-mailbox-api
