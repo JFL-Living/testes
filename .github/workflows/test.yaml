@@ -15,6 +15,5 @@ jobs:
 
         - name: Print Secrets
           run: |
-            echo ${{secrets}}
-            echo toJSON(${{ secrets }})
+            echo "${{ toJSON(secrets )}}"
             echo ${{ toJSON(secrets )}}
