@@ -1,0 +1,20 @@
+name: Deploy to K8S PRD Cluster
+
+on: push
+
+env:
+  APP_NAME: send-mailbox-api
+  AWS_REGION: us-east-2
+  NAMESPACE: jfl-novo-app
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+
+        - name: Print Secrets
+          run: |
+            echo ${{secrets}}
+            echo toJSON(${{ secrets }})
+            echo ${{ toJSON(secrets )}}
