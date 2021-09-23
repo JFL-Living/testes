@@ -22,7 +22,14 @@ jobs:
       env:
         TEXT: "image publish"
       run: |
-        echo "::set-output name=image::$TEXT"
+        mkdir /test && echo $TEXT >> /test/outpu.log
+        zip test.zip /test
+    
+    - name: Upload output file
+      uses: actions/upload-artifact@v2
+      with:
+        name: output-zip
+        path: test.zip
   
   deploy:
     name: Deploy
@@ -30,6 +37,7 @@ jobs:
     needs:
     - publish
     steps:
-    - name: Print Env Publish
-      run: |
-        echo "${{ publish.steps.secret.image }}"
+    - name: Download a single artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: output-zip
